@@ -1,0 +1,26 @@
+{
+  "name": "smartwomen",
+  "version": "0.0.1",
+  "description": "smartwomen - app backend",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongodb": "^2.2.25",
+    "request": "^2.81.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nivedha1/smartwomen"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ]
+}
