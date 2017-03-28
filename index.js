@@ -3,7 +3,9 @@ var app = express();
 var request = require('request');
 var User = require('./user');
 app.set('port', (process.env.PORT || 5000));
-
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 var mongoose = require('mongoose');
 Promise = require('bluebird');
@@ -12,7 +14,7 @@ Promise.promisifyAll(mongoose);
 var url = 'mongodb://nivedha:password@ds145100-a0.mlab.com:45100,ds145100-a1.mlab.com:45100/smartwomen?replicaSet=rs-ds145100'
 // Use connect method to connect to the Server
 
-
+app.ge
 mongoose.connect(url, function() {
 
           var newUser = User({
