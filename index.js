@@ -14,7 +14,7 @@ Promise.promisifyAll(mongoose);
 var url = 'mongodb://nivedha:password@ds145100-a0.mlab.com:45100,ds145100-a1.mlab.com:45100/smartwomen?replicaSet=rs-ds145100'
 // Use connect method to connect to the Server
 
-app.get('createuser',function(req,res){
+app.get('/createuser',function(req,res){
 mongoose.connect(url, function() {
 
           var newUser = User({
