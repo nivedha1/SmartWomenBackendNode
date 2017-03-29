@@ -3,6 +3,7 @@ var app = express();
 var request = require('request');
 var User = require('./user');
 var PhoneNo = require('./phoneno');
+var parser = require('xml2json');
 app.set('port', (process.env.PORT || 5001));
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
@@ -87,7 +88,7 @@ app.get('/health',function(req,res){
         },
       };
     request(options, function(err,response,body) {
-      var parser = require('xml2json');
+
 
   var xml = body;
   var json = parser.toJson(xml); //returns a string containing the JSON structure by default
