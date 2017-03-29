@@ -31,9 +31,5 @@ mongoose.connect(url, function() {
           }
               mongoose.connection.close();
           });// The collection exists
-
-
-
-
-
+});
 });
