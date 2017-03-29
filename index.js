@@ -80,17 +80,21 @@ app.get('/login', function(req, res) {
 
 app.get('/health',function(req,res){
     var options = {
-        url: 'https://wsearch.nlm.nih.gov/ws/query?',
+        url: 'https://wsearch.nlm.nih.gov/ws/query?db=healthTopics&rettype=topic&term=full-summary:'+req.query.term,
         method: 'GET',
         headers: {
             'Authorization': 'fc8c108f9833af20c8468722d4577692',
         },
-        qs :{'term':req.query.term,
-        'db':'healthTopics'}
-    };
+      };
     request(options, function(err,response,body) {
-      res.send(body);
-    });
+      var parser = require('xml2json');
+
+  var xml = body;
+  var json = parser.toJson(xml); //returns a string containing the JSON structure by default
+
+
+res.send(JSON.parse(json).nlmSearchResult.list.document[0].content['health-topic']['full-summary']);
+});
   });
 
 app.get('/addphoneno', function(req, res) {
