@@ -77,6 +77,22 @@ app.get('/login', function(req, res) {
             }));
     });
 });
+
+app.get('/health',function(req,res){
+    var options = {
+        url: 'https://wsearch.nlm.nih.gov/ws/query?',
+        method: 'GET',
+        headers: {
+            'Authorization': 'fc8c108f9833af20c8468722d4577692',
+        },
+        qs :{'term':req.query.term,
+        'db':'healthTopics'}
+    };
+    request(options, function(err,response,body) {
+      res.send(body);
+    });
+  });
+
 app.get('/addphoneno', function(req, res) {
     mongoose.connect(url, function() {
         var phoneNos = PhoneNo({
