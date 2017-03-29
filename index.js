@@ -92,9 +92,13 @@ app.get('/health',function(req,res){
 
   var xml = body;
   var json = parser.toJson(xml); //returns a string containing the JSON structure by default
+  var htmlToText = require('html-to-text');
 
+  var text = htmlToText.fromString(JSON.parse(json).nlmSearchResult.list.document[0].content['health-topic']['full-summary'], {
+      wordwrap: 130
+  });
+  res.send(text);
 
-res.send(JSON.parse(json).nlmSearchResult.list.document[0].content['health-topic']['full-summary']);
 });
   });
 
