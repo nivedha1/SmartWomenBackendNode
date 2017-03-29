@@ -22,7 +22,7 @@ app.get('/createuser', function(req, res) {
         User.find({
                 'username': req.query.username
             }, function(err, docs) {
-              if(err)
+              if(err!=null)
               {
                 console.log(err);
                 mongoose.connection.close();
@@ -34,7 +34,7 @@ app.get('/createuser', function(req, res) {
                         password: req.query.password,
                     });
                     newUser.save(function(err) {
-                        if (err) {
+                        if (err!=null) {
                           console.log(err);
                           mongoose.connection.close();
                           res.send("failure");
@@ -45,7 +45,7 @@ app.get('/createuser', function(req, res) {
                             res.send("success");
                         }
                     });
-                } else {
+                } else if(docs.length>0){
                   console.log('User not created!');
                     mongoose.connection.close();
                     res.send("failure");
@@ -60,7 +60,7 @@ app.get('/login', function(req, res) {
                 username: req.query.username,
                 password: req.query.password
             }, function(err, docs) {
-              if(err)
+              if(err!=null)
               {
                 console.log(err);
                   mongoose.connection.close();
@@ -69,7 +69,7 @@ app.get('/login', function(req, res) {
                     console.log('Username doest exists!');
                     mongoose.connection.close();
                     res.send("failure");
-                } else {
+                } else if(docs.length>0){
                     console.log('Username exists!');
                     mongoose.connection.close();
                     res.send("success");
