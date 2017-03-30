@@ -114,8 +114,8 @@ app.get('/addPhoneNos', function(req, res) {
             phoneNos = PhoneNo({
             username: req.query.username,
             meeting_date:req.query.meeting_date,
-            daycare_no: req.query.daycareno,
-            forward_no: req.query.forwardno,
+            daycare_no: req.query.daycare_no,
+            forward_no: req.query.forward_no,
             meeting_time_from: req.query.meeting_time_from,
             meeting_time_to: req.query.meeting_time_to
         });
