@@ -97,28 +97,84 @@ app.get('/health',function(req,res){
   var text = htmlToText.fromString(JSON.parse(json).nlmSearchResult.list.document[0].content['health-topic']['full-summary'], {
       wordwrap: 130
   });
-  res.send(text);
 
+console.log(text)
+  res.send(text);
 });
   });
 
-app.get('/addphoneno', function(req, res) {
+app.get('/addPhoneNos', function(req, res) {
     mongoose.connect(url, function() {
-        var phoneNos = PhoneNo({
-            name: req.query.name,
+      var phoneNos ;
+      if (PhoneNo.find({
+              username: req.query.username,
+          }, function(err, docs) {
+            if(docs.length==0)
+            {
+            phoneNos = PhoneNo({
+            username: req.query.username,
+            meeting_date:req.query.meeting_date,
             daycare_no: req.query.daycareno,
             forward_no: req.query.forwardno,
-            lateforward_no: req.query.lateforwardno,
-            meeting_time: req.query.meetingtime
+            meeting_time_from: req.query.meeting_time_from,
+            meeting_time_to: req.query.meeting_time_to
         });
-        // save the user
         phoneNos.save(function(err) {
-            if (err) throw err;
-            else {
-                console.log('Phone nos saved');
-                res.send("created");
+            if (err) {
+                mongoose.connection.close();
+                console.log('Phone nos not saved'+err);
+                res.send("failure");
             }
-            mongoose.connection.close();
+            else {
+                mongoose.connection.close();
+                console.log('Phone nos saved');
+                res.send("success");
+            }
+        });
+      }
+        else{
+
+          var query = {'username':req.query.username};
+          req.newData=[];
+          req.username= req.query.username;
+          req.meeting_date=req.query.meeting_date;
+          req.daycare_no= req.query.daycare_no;
+          req.forward_no= req.query.forward_no;
+          req.meeting_time_from= req.query.meeting_time_from;
+          req.meeting_time_to= req.query.meeting_time_to;
+
+          PhoneNo.findOneAndUpdate(query, req, function(err, doc){
+            if (err) {
+              mongoose.connection.close();
+              console.log('Phone nos not saved'+err);
+              res.send("failure");
+            }
+            else {
+              mongoose.connection.close();
+              console.log('Phone nos saved');
+              res.send("success");
+            }
+          });
+        }
+    }));
+
+});
+});
+app.get('/getPhoneNos', function(req, res) {
+    mongoose.connect(url, function() {
+        PhoneNo.find({
+            username: req.query.username},function(err,docs){
+
+            if (err || docs.length ==0 ) {
+              console.log('Phone nos not retrived');
+                mongoose.connection.close();
+              res.send(failure);
+            } else {
+                console.log('Phone nos retrived');
+                  mongoose.connection.close();
+                res.send(docs);
+            }
+
         }); // The collection exists
     });
 });

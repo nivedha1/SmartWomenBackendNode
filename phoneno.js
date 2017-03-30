@@ -7,10 +7,11 @@ var phoneNumberSchema = new Schema({
   username: { type: String, required: true, unique: true},
   daycare_no:String,
   forward_no: String,
-  lateforward_no: String,
   created_at: Date,
   updated_at: Date,
-  meeting_time:Date
+  meeting_date:String,
+  meeting_time_from:String,
+  meeting_time_to:String
 });
 
 // the schema is useless so far
