@@ -122,7 +122,7 @@ app.get('/addPhoneNos', function(req, res) {
         phoneNos.save(function(err) {
             if (err) {
                 mongoose.connection.close();
-                console.log('Phone nos not saved'+err);
+                console.log('Phone nos not saved'+ err);
                 res.send("failure");
             }
             else {
