@@ -168,7 +168,7 @@ app.get('/getPhoneNos', function(req, res) {
             if (err || docs.length ==0 ) {
               console.log('Phone nos not retrived');
                 mongoose.connection.close();
-              res.send(failure);
+              res.send("failure");
             } else {
                 console.log('Phone nos retrived');
                   mongoose.connection.close();
