@@ -14,7 +14,7 @@ Promise = require('bluebird');
 Promise.promisifyAll(mongoose);
 // Connection URL
 var url = 'mongodb://nivedha:password@ds145100-a0.mlab.com:45100,ds145100-a1.mlab.com:45100/smartwomen?replicaSet=rs-ds145100'
-// Use connect method to connect to the Server
+
 app.get('/', function(req, res) {
     console.log('app running successfully')
 });
@@ -175,6 +175,6 @@ app.get('/getPhoneNos', function(req, res) {
                 res.send(docs);
             }
 
-        }); // The collection exists
+        });
     });
 });
