@@ -12,7 +12,7 @@ run the below command
 npm install
 
 ```
-###Running the application
+### Running the application
 
 
 ```
