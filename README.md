@@ -1,6 +1,6 @@
 # smartwomen
 
-# Backend for Smartwomnen in express
+# Backend for Smartwomen android application in express
 
 ### Installing the application
 
